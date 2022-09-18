@@ -13,3 +13,27 @@
 /* При генерации нового предсказания старое предсказание должно добавляться в начало списка «Мои предсказания» — .forecasts  */
 
 /* Для добавления предсказания в список воспользуйся шаблоном forecast-item */
+
+let prediction = (
+    'Яркое приключение уже поджидает тебя.',
+    'Скоро получишь хорошую новость.',
+    'Прислушайся к себе и найдешь ответ на свой вопрос.',
+    'Полученный результат превзойдет все ожидания.',
+    'Тебя ожидает приятная встреча.'
+);
+
+
+const button = document.querySelector('forecast-btn');
+const newForecast = document.querySelector('.current-forecast h1');
+const procent = document.querySelector('.current-forecast p')
+
+button.addEventListener('click', function() {
+    let rand = [Math.floor(Math.random() * prediction.length)];
+    newForecast.innerText = prediction[rand].text;
+    procent = getRandomProcent(0, 100);
+    alert(`Вероятность ${procent}%`);
+});
+
+function getRandomProcent(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+}
