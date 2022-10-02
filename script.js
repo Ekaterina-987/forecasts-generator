@@ -23,15 +23,15 @@ let prediction = (
 );
 
 
-const button = document.querySelector('forecast-btn');
+const button = document.querySelector('.forecast-btn');
 const newForecast = document.querySelector('.current-forecast h1');
-const procent = document.querySelector('.current-forecast p')
+let procent = document.querySelector('.current-forecast p')
 
 button.addEventListener('click', function() {
     let rand = [Math.floor(Math.random() * prediction.length)];
-    newForecast.innerText = prediction[rand].text;
+    newForecast.innerText = prediction[rand];
     procent = getRandomProcent(0, 100);
-    alert(`Вероятность ${procent}%`);
+    procent.append(`Вероятность ${procent}%`)
 });
 
 function getRandomProcent(min, max) {
