@@ -14,26 +14,35 @@
 
 /* Для добавления предсказания в список воспользуйся шаблоном forecast-item */
 
-let prediction = (
+let prediction = [
     'Яркое приключение уже поджидает тебя.',
     'Скоро получишь хорошую новость.',
     'Прислушайся к себе и найдешь ответ на свой вопрос.',
     'Полученный результат превзойдет все ожидания.',
     'Тебя ожидает приятная встреча.'
-);
+];
 
 
 const button = document.querySelector('.forecast-btn');
-const newForecast = document.querySelector('.current-forecast h1');
-let procent = document.querySelector('.current-forecast p')
+const forecast = document.querySelector('.current-forecast h1');
+let procent = document.querySelector('.current-forecast p');
+const list = document.querySelector('.forecasts');
 
-button.addEventListener('click', function() {
+button.addEventListener('click', function(a) {
     let rand = [Math.floor(Math.random() * prediction.length)];
-    newForecast.innerText = prediction[rand];
-    procent = getRandomProcent(0, 100);
-    procent.append(`Вероятность ${procent}%`)
+    forecast.innerText = prediction[rand];
+    const newForecast = document.createElement('div');
+    newForecast.classList.add('forecast-item');
+
+    procent.append(`Вероятность ${getRandomProcent(100)}%`);
+
+    if (a.button) {
+        list.append(newForecast, procent);
+
+    }
+
 });
 
-function getRandomProcent(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
+function getRandomProcent(max) {
+    return Math.floor(Math.random() * max);
 }
