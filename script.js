@@ -25,22 +25,22 @@ let prediction = [
 
 const button = document.querySelector('.forecast-btn');
 const forecast = document.querySelector('.current-forecast h1');
-let procent = document.querySelector('.current-forecast p');
-const list = document.querySelector('.forecasts');
+const procent = document.querySelector('.current-forecast p');
+const newForecast = document.querySelector('.forecasts');
 
-button.addEventListener('click', function(a) {
+button.addEventListener('click', function() {
     let rand = [Math.floor(Math.random() * prediction.length)];
     forecast.innerText = prediction[rand];
-    const newForecast = document.createElement('div');
-    newForecast.classList.add('forecast-item');
 
-    procent.append(`Вероятность ${getRandomProcent(100)}%`);
+    procent.textContent = `Вероятность ${getRandomProcent(100)}%`;
 
-    if (a.button) {
-        list.append(newForecast, procent);
+    const template = document.querySelector('#forecast-item');
+    const el = template.content.cloneNode(true);
 
-    }
+    el.querySelector('h3').textContent = forecast.textContent;
+    el.querySelector('p').textContent = procent.textContent;
 
+    newForecast.append(el);
 });
 
 function getRandomProcent(max) {
